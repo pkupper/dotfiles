@@ -1,0 +1,166 @@
+# Variables
+
+	# Main modifier (Super Key)
+	set $mod Mod4
+
+	# Direction keys
+	set $left Left
+	set $down Down
+	set $up Up
+	set $right Right
+
+	# Default terminal emulator
+	set $term gnome-terminal
+
+	# Default application launcher
+	set $menu "rofi -i -modi drun,run,window -show drun"
+
+# Input configuration
+
+	# You can get the names of your inputs by running: swaymsg -t get_inputs
+
+	# Default to DE Layout
+	input "*" {
+		xkb_layout de
+	}
+	
+	# Use US Layout for Lets_Split
+	input 65261:12384:Wootpatoot_Lets_Split_v2 xkb_layout us
+
+# Output configuration
+
+	# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+	# Wallpaper
+	output * bg ~/Pictures/wallpaper.jpg fill
+
+	# Displays
+	output DP-3 resolution 3840x2160 position 1920,0 scale 1.5
+
+	output DVI-D-1 resolution 1920x1080 position 0,400
+
+# Idle configuration
+
+	# Lock after 300 seconds inactivity. Display off after 600 seconds inactivity
+	exec swayidle -w \
+		timeout 300 'swaylock -f -c 000000' \
+		timeout 600 'swaymsg "output * dpms off"' \
+		resume 'swaymsg "output * dpms on"' \
+		before-sleep 'swaylock -f -c 000000'
+
+# Key bindings
+	# Start applications
+		# Terminal
+		bindsym $mod+Return exec $term
+		# File Browser
+		bindsym $mod+e exec nautilus
+
+	# Start application Launcher
+	bindsym $mod+d exec $menu
+
+	# Window management
+		# Move focus
+		bindsym $mod+$left focus left
+		bindsym $mod+$down focus down
+		bindsym $mod+$up focus up
+		bindsym $mod+$right focus right
+
+		# Move focused windows
+		bindsym $mod+Shift+$left move left
+		bindsym $mod+Shift+$down move down
+		bindsym $mod+Shift+$up move up
+		bindsym $mod+Shift+$right move right
+
+		# Drag floating windows
+		floating_modifier $mod normal
+
+		# Kill focused window
+		bindsym $mod+q kill
+
+		# Split direction
+		bindsym $mod+b splith # vertical
+		bindsym $mod+v splitv # horizontal
+
+		# Set layout
+		bindsym $mod+F1 layout default
+		bindsym $mod+F2 layout stacking
+		bindsym $mod+F3 layout tabbed
+
+		# Make the current focus fullscreen
+		bindsym $mod+f fullscreen
+
+		# Toggle the current focus between tiling and floating mode
+		bindsym $mod+Shift+space floating toggle
+
+		# Swap focus between the tiling area and the floating area
+		bindsym $mod+space focus mode_toggle
+
+		# move focus to the parent container
+		bindsym $mod+a focus parent
+
+	# Workspaces
+		# Switch to workspace
+		bindsym $mod+1 workspace 1
+		bindsym $mod+2 workspace 2
+		bindsym $mod+3 workspace 3
+		bindsym $mod+4 workspace 4
+		bindsym $mod+5 workspace 5
+		bindsym $mod+6 workspace 6
+		bindsym $mod+7 workspace 7
+		bindsym $mod+8 workspace 8
+		bindsym $mod+9 workspace 9
+		bindsym $mod+0 workspace 10
+
+		# Move window to workspace
+		bindsym $mod+Shift+1 move container to workspace 1
+		bindsym $mod+Shift+2 move container to workspace 2
+		bindsym $mod+Shift+3 move container to workspace 3
+		bindsym $mod+Shift+4 move container to workspace 4
+		bindsym $mod+Shift+5 move container to workspace 5
+		bindsym $mod+Shift+6 move container to workspace 6
+		bindsym $mod+Shift+7 move container to workspace 7
+		bindsym $mod+Shift+8 move container to workspace 8
+		bindsym $mod+Shift+9 move container to workspace 9
+	bindsym $mod+Shift+0 move container to workspace 10
+
+	# Lock screen
+	bindsym $mod+l exec swaylock
+	
+	# Media control
+		# Pulse Audio controls
+		bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
+		bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
+		bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+		# Media player controls
+		bindsym XF86AudioPlay exec playerctl play-pause
+		bindsym XF86AudioPause exec playerctl play-pause
+		bindsym XF86AudioNext exec playerctl next
+		bindsym XF86AudioPrev exec playerctl previous
+
+	# Sway managment
+		# Reload sway config
+		bindsym $mod+Shift+c reload
+
+		# Edit sway config
+		bindsym $mod+c exec gedit ~/.config/sway/config
+
+		# Exit sway
+		bindsym $mod+Shift+e exec swaymsg exit
+
+	# Screenshot
+		# Select region
+		bindsym $mod+s exec grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+
+# Startup applications
+	# Status Bar
+	exec waybar
+	# Notification Daemon
+	exec mako
+
+# Design
+	default_border none
+
+# Misc
+	include /etc/sway/config.d/*
+
