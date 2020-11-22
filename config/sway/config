@@ -10,10 +10,10 @@
 	set $right Right
 
 	# Default terminal emulator
-	set $term gnome-terminal
+	set $term termite
 
 	# Default application launcher
-	set $menu "rofi -i -modi drun,run,window -show drun"
+	set $menu "dmenu_path | wofi --show drun --allow-images -i | xargs swaymsg exec --"
 
 # Input configuration
 
@@ -27,17 +27,29 @@
 	# Use US Layout for Lets_Split
 	input 65261:12384:Wootpatoot_Lets_Split_v2 xkb_layout us
 
+input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
+	xkb_layout us
+	xkb_variant intl
+}
+
 # Output configuration
 
 	# You can get the names of your outputs by running: swaymsg -t get_outputs
 
 	# Wallpaper
-	output * bg ~/Pictures/wallpaper.jpg fill
+	output * bg ~/Pictures/arch_dark_blue.png fill
 
 	# Displays
-	output DP-3 resolution 3840x2160 position 1920,0 scale 1.5
+	output DP-1 resolution 3840x2160 position 1920,0 scale 1.5
+
 
 	output DVI-D-1 resolution 1920x1080 position 0,400
+
+	output HDMI-A-1 resolution 1920x1080 position 0,400
+	
+	# Valve Index
+	
+	output DP-2 disable
 
 # Idle configuration
 
@@ -127,14 +139,13 @@
 	bindsym $mod+l exec swaylock
 	
 	# Media control
-		# Pulse Audio controls
-		bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
-		bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
+		bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+		bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 		bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-		# Media player controls
+		bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+		bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+		bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 		bindsym XF86AudioPlay exec playerctl play-pause
-		bindsym XF86AudioPause exec playerctl play-pause
 		bindsym XF86AudioNext exec playerctl next
 		bindsym XF86AudioPrev exec playerctl previous
 
@@ -150,17 +161,49 @@
 
 	# Screenshot
 		# Select region
-		bindsym $mod+s exec grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+		bindsym $mod+s exec slurp | grim -g - - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
 # Startup applications
+	# Dbus
+	exec dbus-launch
 	# Status Bar
 	exec waybar
 	# Notification Daemon
 	exec mako
+	exec polkit-gnome
 
 # Design
 	default_border none
 
+# Floating rules
+for_window [window_type="menu"]            floating enable
+for_window [window_role="app"]             floating enable
+for_window [window_role="pop-up"]          floating enable
+for_window [window_role="task_dialog"]     floating enable
+for_window [window_type="dialog"]          floating enable
+for_window [title="Preferences$"]          floating enable
+for_window [class="Anki"]                  floating enable
+for_window [title="Anki$"]                 floating enable
+for_window [app_id="electrum"]             floating enable
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [class="Blueman-manager"]       floating enable
+for_window [class="Galculator"]            floating enable
+for_window [class="Gui.py"]                floating enable
+for_window [class="Mnemosyne"]             floating enable
+for_window [class="Nm-connection-editor"]  floating enable
+for_window [class="Pavucontrol"]           floating enable
+for_window [class="Qpaeq"]                 floating enable
+for_window [class="SimpleScreenRecorder"]  floating enable
+for_window [class="Woeusbgui"]             floating enable
+for_window [class="electrum"]              floating enable
+for_window [class="etcher"]                floating enable
+for_window [class="feh"]                   floating enable
+for_window [title="^bobby$"]               floating enable
+for_window [title="Firefox - Sharing Indicator"] floating enable
+
 # Misc
 	include /etc/sway/config.d/*
+
+
+
 
