@@ -120,7 +120,7 @@ mkdir -p /mnt/efi
 mount "${part_boot}" /mnt/efi
 
 echo -e "\n### Installing packages"
-pacstrap -i /mnt base base-devel linux linux-firmware terminus-font zsh
+pacstrap -i /mnt base base-devel linux linux-firmware terminus-font zsh git grub efibootmgr os-prober
 
 echo -e "\n### Generating base config files"
 echo "FONT=$font" > /mnt/etc/vconsole.conf
@@ -137,6 +137,10 @@ FILES=()
 HOOKS=(base consolefont udev autodetect modconf block filesystems keyboard)
 EOF
 arch-chroot /mnt mkinitcpio -p linux
+
+echo -e "\n### Installing bootloader"
+arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
 echo -e "\n### Configuring swap file"
 mkdir -p /mnt/swap
