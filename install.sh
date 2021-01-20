@@ -1,10 +1,10 @@
 #!/bin/bash
 
-ln -s $(pwd)/config/rofi ~/.config/
-ln -s $(pwd)/config/sway ~/.config/
-ln -s $(pwd)/config/swaylock ~/.config/
-ln -s $(pwd)/config/waybar ~/.config/
-ln -s $(pwd)/config/wofi ~/.config/
+ln -fs $(pwd)/.config/rofi ~/.config/
+ln -fs $(pwd)/.config/sway ~/.config/
+ln -fs $(pwd)/.config/swaylock ~/.config/
+ln -fs $(pwd)/.config/waybar ~/.config/
+ln -fs $(pwd)/.config/wofi ~/.config/
 
-ln -s $(pwd)/shell/zsh/.zshrc ~
-ln -s $(pwd)/shell/.profile ~/.zprofile
+ln -fs $(pwd)/.zshrc ~
+ln -fs $(pwd)/.zprofile ~/.zprofile

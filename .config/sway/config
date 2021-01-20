@@ -13,7 +13,11 @@
 	set $term termite
 
 	# Default application launcher
-	set $menu "dmenu_path | wofi --show drun --allow-images -i | xargs swaymsg exec --"
+	set $drunmenu "wofi --show drun --allow-images -i | xargs swaymsg exec --"
+	set $runmenu "wofi --show run --exec-search | xargs swaymsg exec --"
+	
+	# Default lockscreen
+	set $lockscreen swaylock -f
 
 # Input configuration
 
@@ -21,7 +25,8 @@
 
 	# Default to DE Layout
 	input "*" {
-		xkb_layout de
+		xkb_layout de,ru
+		xkb_options grp:alts_toggle
 	}
 	
 	# Use US Layout for Lets_Split
@@ -37,11 +42,10 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 	# You can get the names of your outputs by running: swaymsg -t get_outputs
 
 	# Wallpaper
-	output * bg ~/Pictures/arch_dark_blue.png fill
+	output * bg ~/Pictures/wallpapers/25573.jpg fill
 
 	# Displays
 	output DP-1 resolution 3840x2160 position 1920,0 scale 1.5
-
 
 	output DVI-D-1 resolution 1920x1080 position 0,400
 
@@ -55,10 +59,10 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 
 	# Lock after 300 seconds inactivity. Display off after 600 seconds inactivity
 	exec swayidle -w \
-		timeout 300 'swaylock -f -c 000000' \
+		timeout 300 '$lockscreen' \
 		timeout 600 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
-		before-sleep 'swaylock -f -c 000000'
+		before-sleep '$lockscreen'
 
 # Key bindings
 	# Start applications
@@ -68,7 +72,8 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 		bindsym $mod+e exec nautilus
 
 	# Start application Launcher
-	bindsym $mod+d exec $menu
+	bindsym $mod+d exec $drunmenu
+	bindsym $mod+Shift+d exec $runmenu
 
 	# Window management
 		# Move focus
@@ -136,7 +141,7 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 	bindsym $mod+Shift+0 move container to workspace 10
 
 	# Lock screen
-	bindsym $mod+l exec swaylock
+	bindsym $mod+l exec $lockscreen
 	
 	# Media control
 		bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -162,6 +167,8 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 	# Screenshot
 		# Select region
 		bindsym $mod+s exec slurp | grim -g - - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+		
+		bindsym $mod+Shift+s exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
 # Startup applications
 	# Dbus
@@ -170,6 +177,7 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 	exec waybar
 	# Notification Daemon
 	exec mako
+	# Polkit
 	exec polkit-gnome
 
 # Design
@@ -203,6 +211,7 @@ for_window [title="Firefox - Sharing Indicator"] floating enable
 
 # Misc
 	include /etc/sway/config.d/*
+	
 
 
 

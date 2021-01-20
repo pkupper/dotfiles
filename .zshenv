@@ -1,6 +1,6 @@
 export GOPATH=$HOME/go
 
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin
 
 export LD_LIBRARY_PATH=/usr/local/lib/
 
