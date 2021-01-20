@@ -120,7 +120,7 @@ mkdir -p /mnt/efi
 mount "${part_boot}" /mnt/efi
 
 echo -e "\n### Installing packages"
-pacstrap -i /mnt base base-devel linux linux-firmware
+pacstrap -i /mnt base base-devel linux linux-firmware terminus-font zsh
 
 echo -e "\n### Generating base config files"
 echo "FONT=$font" > /mnt/etc/vconsole.conf
