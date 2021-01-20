@@ -7,6 +7,10 @@
 # - Verify the ISO file: `$ pacman-key -v archlinux-<version>-dual.iso.sig`
 # - Create a bootable USB with: `# dd if=archlinux*.iso of=/dev/sdX && sync`
 #
+# Run installation:
+#
+# - Connect to wifi via: `# iwctl station wlan0 connect WIFI-NETWORK`
+# - Run: `# bash <(curl -sL https://git.io/JtmMi)`
 
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
