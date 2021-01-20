@@ -114,6 +114,11 @@ echo -e "\n### Formatting partitions"
 mkfs.vfat -n "EFI" -F32 "${part_boot}"
 mkfs.ext4 "${part_root}"
 
+echo -e "\n### Mounting partitions"
+mount "${part_root}" /mnt
+mkdir /mnt/efi
+mount "${part_boot}" /mnt/efi
+
 echo -e "\n### Installing packages"
 pacstrap -i /mnt base base-devel linux linux-firmware
 
