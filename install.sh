@@ -52,11 +52,11 @@ get_choice() {
     dialog --clear --stdout --backtitle "$BACKTITLE" --title "$title" --menu "$description" 0 0 0 "${options[@]}"
 }
 
-# echo -e "\n### Checking UEFI boot mode"
-# if [ ! -f /sys/firmware/efi/fw_platform_size ]; then
-#     echo >&2 "You must boot in UEFI mode to continue"
-#     exit 2
-# fi
+echo -e "\n### Checking UEFI boot mode"
+if [ ! -f /sys/firmware/efi/fw_platform_size ]; then
+    echo >&2 "You must boot in UEFI mode to continue"
+    exit 2
+fi
 
 echo -e "\n### Setting keyboard layout"
 loadkeys de-latin1
