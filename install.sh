@@ -116,7 +116,7 @@ mkfs.ext4 "${part_root}"
 
 echo -e "\n### Mounting partitions"
 mount "${part_root}" /mnt
-mkdir /mnt/efi
+mkdir -p /mnt/efi
 mount "${part_boot}" /mnt/efi
 
 echo -e "\n### Installing packages"
@@ -139,6 +139,7 @@ EOF
 arch-chroot /mnt mkinitcpio -p linux
 
 echo -e "\n### Configuring swap file"
+mkdir -p /mnt/swap
 truncate -s 0 /mnt/swap/swapfile
 dd if=/dev/zero of=/mnt/swap/swapfile bs=1M count="${swapsize}"
 chmod 600 /mnt/swap/swapfile
