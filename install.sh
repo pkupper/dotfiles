@@ -125,7 +125,7 @@ mkdir -p /mnt/efi
 mount "${part_boot}" /mnt/efi
 
 echo -e "\n### Installing packages"
-pacstrap -i /mnt ${skriptdir}/pkglist/pacman)
+pacstrap -i /mnt ${skriptdir}/pkglist/pacman
 
 echo -e "\n### Generating base config files"
 echo "FONT=$font" > /mnt/etc/vconsole.conf
