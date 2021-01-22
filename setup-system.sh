@@ -11,6 +11,8 @@ dotfiles_dir="$(
 )"
 cd "$dotfiles_dir"
 
+user="$(echo "$dotfiles_dir" | cut -d"/" -f3)"
+
 if (( "$EUID" )); then
     sudo -s "$dotfiles_dir/$script_name" "$@"
     exit 0
@@ -39,7 +41,7 @@ copy() {
     if [ -z "$reverse" ]; then
         [ -n "$2" ] && chmod "$2" "$dest_file"
     else
-        chown -R paul "$dest_file"
+        chown -R "$user" "$dest_file"
     fi
     echo "$dest_file <= $orig_file"
 }

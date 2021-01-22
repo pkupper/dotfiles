@@ -120,7 +120,7 @@ mkdir -p /mnt/efi
 mount "${part_boot}" /mnt/efi
 
 echo -e "\n### Installing packages"
-pacstrap -i /mnt base base-devel linux linux-firmware terminus-font zsh git grub efibootmgr os-prober
+pacstrap -i /mnt $(<pkglist/pacman)
 
 echo -e "\n### Generating base config files"
 echo "FONT=$font" > /mnt/etc/vconsole.conf
