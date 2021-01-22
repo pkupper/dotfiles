@@ -52,6 +52,11 @@ get_choice() {
     dialog --clear --stdout --backtitle "$BACKTITLE" --title "$title" --menu "$description" 0 0 0 "${options[@]}"
 }
 
+skriptdir="$(
+    cd "$(dirname "$0")"
+    pwd
+)"
+
 echo -e "\n### Checking UEFI boot mode"
 if [ ! -f /sys/firmware/efi/fw_platform_size ]; then
     echo >&2 "You must boot in UEFI mode to continue"
@@ -120,7 +125,7 @@ mkdir -p /mnt/efi
 mount "${part_boot}" /mnt/efi
 
 echo -e "\n### Installing packages"
-pacstrap -i /mnt $(<$(dirname "${BASH_SOURCE[0]}")/pkglist/pacman)
+pacstrap -i /mnt ${skriptdir}/pkglist/pacman)
 
 echo -e "\n### Generating base config files"
 echo "FONT=$font" > /mnt/etc/vconsole.conf
