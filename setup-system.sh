@@ -62,13 +62,6 @@ systemctl_enable_start() {
 }
 
 echo ""
-echo "======================"
-echo "Installing packages..."
-echo "======================"
-
-pacman -Syu - < $dotfiles_dir/pkglist/pacman
-
-echo ""
 echo "=========================="
 echo "Setting up /etc configs..."
 echo "=========================="
@@ -76,6 +69,13 @@ echo "=========================="
 copy "etc/default/grub"
 
 (( "$reverse" ))&& exit 0
+
+echo ""
+echo "======================"
+echo "Installing packages..."
+echo "======================"
+
+pacman -Syu - < $dotfiles_dir/pkglist/pacman
 
 echo ""
 echo "================================="
