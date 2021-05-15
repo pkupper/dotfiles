@@ -32,11 +32,16 @@
 	# Use US Layout for Lets_Split
 	input 65261:12384:Wootpatoot_Lets_Split_v2 xkb_layout us
 
-input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
-	xkb_layout us
-	xkb_variant intl
-}
-
+	input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
+		xkb_layout us
+		xkb_variant intl
+	}
+	
+	input 1386:222:Wacom_Bamboo_16FG_4x5_Pen {
+		left_handed enabled
+		map_to_output DP-1
+	}
+	
 # Output configuration
 
 	# You can get the names of your outputs by running: swaymsg -t get_outputs
@@ -47,13 +52,13 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 	# Displays
 	output DP-1 resolution 3840x2160 position 1920,0 scale 1.5
 
-	output DVI-D-1 resolution 1920x1080 position 0,400
+	output DVI-D-1 resolution 1920x1080 position 0,360
 
-	output HDMI-A-1 resolution 1920x1080 position 0,400
+	output HDMI-A-1 resolution 1920x1080 position 0,360
 	
 	# Valve Index
 	
-	output DP-2 disable
+	# output DP-2 disable
 
 # Idle configuration
 
@@ -166,9 +171,9 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 
 	# Screenshot
 		# Select region
-		bindsym $mod+s exec slurp | grim -g - - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+		bindsym $mod+s exec slurp | grim -g - - | tee $(xdg-user-dir PICTURES)/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') | wl-copy
 		
-		bindsym $mod+Shift+s exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+		bindsym $mod+Shift+s exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | tee $(xdg-user-dir PICTURES)/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') | wl-copy
 
 # Startup applications
 	# Dbus
@@ -178,7 +183,7 @@ input 65261:12384:foostan_Corne_Keyboard_(crkbd) {
 	# Notification Daemon
 	exec mako
 	# Polkit
-	exec polkit-gnome
+	exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Design
 	default_border none
@@ -208,11 +213,9 @@ for_window [class="etcher"]                floating enable
 for_window [class="feh"]                   floating enable
 for_window [title="^bobby$"]               floating enable
 for_window [title="Firefox - Sharing Indicator"] floating enable
+for_window [title="JACK Audio Connection Kit"] floating enable
 
 # Misc
 	include /etc/sway/config.d/*
-	
-
-
-
+	exec pactl unload-module module-remap-source && pactl load-module module-remap-source master=alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7RVJV9022B3F8-00.analog-stereo master_channel_map=front-left channels=1 source_name=Scarlett_Solo_Microphone remix=no & pactl load-module module-remap-source master=alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7RVJV9022B3F8-00.analog-stereo master_channel_map=front-right channels=1 source_name=Scarlett_Solo_Instrument remix=no
 

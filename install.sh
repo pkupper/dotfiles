@@ -124,8 +124,8 @@ mount "${part_root}" /mnt
 mkdir -p /mnt/efi
 mount "${part_boot}" /mnt/efi
 
-echo -e "\n### Installing packages"
-pacstrap -i /mnt ${skriptdir}/pkglist/pacman
+echo -e "\n### Installing base packages"
+pacstrap -i /mnt base base-devel linux linux-firmware grub efibootmgr os-prober zsh git
 
 echo -e "\n### Generating base config files"
 echo "FONT=$font" > /mnt/etc/vconsole.conf
@@ -164,6 +164,7 @@ done
 arch-chroot /mnt chsh -s /usr/bin/zsh
 echo "$user:$password" | arch-chroot /mnt chpasswd
 arch-chroot /mnt passwd -dl root
+arch-chroot /mnt sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
 
 echo -e "\n### Cloning dotfiles"
 arch-chroot /mnt sudo -u $user bash -c 'git clone --recursive https://github.com/pkupper/dotfiles.git ~/.dotfiles'

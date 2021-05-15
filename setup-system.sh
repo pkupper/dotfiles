@@ -62,6 +62,13 @@ systemctl_enable_start() {
 }
 
 echo ""
+echo "======================"
+echo "Installing packages..."
+echo "======================"
+
+pacman -S - < $dotfiles_dir/pkglist/pacman
+
+echo ""
 echo "=========================="
 echo "Setting up /etc configs..."
 echo "=========================="

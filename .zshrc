@@ -11,23 +11,28 @@ alias sway="sway > ~/.log/sway/sway.log 2>&1"
 
 case $(tty) in 
 	(/dev/tty[1-9]) 
-		autoload -Uz promptinit
-		promptinit
-		prompt fade blue
+  		ZSH_THEME="alanpeabody"
+  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6,bg=0"
+  		DISABLE_AUTO_UPDATE="true"
+  		plugins=(git zsh-autosuggestions)
+		source $ZSH/oh-my-zsh.sh
+		echo -e '\033[?17;0;64c'
   		;; 
   	(*)
   		ZSH_THEME="agnoster"
+  		DISABLE_AUTO_UPDATE="true"
   		plugins=(git zsh-autosuggestions)
 		source $ZSH/oh-my-zsh.sh
   		;; 
 esac
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-	export QT_QPA_PLATFORM=wayland
+	# export QT_QPA_PLATFORM=wayland
 	export MOZ_ENABLE_WAYLAND=1
 	# export GDK_BACKEND=wayland
 	export XDG_CURRENT_DESKTOP=sway
-	exec sway
+	export WLR_XWAYLAND=/home/paul/.local/bin/Xwayland
+	exec systemd-cat --identifier=sway sway
 fi
 
 # configure aliases
@@ -35,6 +40,8 @@ fi
 
 export VISUAL="/usr/bin/nvim"
 export EDITOR="$VISUAL"
-export SUDO_EDITOR="$VISUAL"
+export SUDO_EDITOR="/usr/bin/gedit"
+
+export CHROOT=$HOME/chroot
 
 
