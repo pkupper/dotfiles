@@ -66,7 +66,7 @@ echo "======================"
 echo "Installing packages..."
 echo "======================"
 
-pacman -S - < $dotfiles_dir/pkglist/pacman
+pacman -Syu - < $dotfiles_dir/pkglist/pacman
 
 echo ""
 echo "=========================="
