@@ -128,7 +128,10 @@ echo -e "\n### Installing base packages"
 pacstrap -i /mnt base base-devel linux linux-firmware grub efibootmgr os-prober zsh git
 
 echo -e "\n### Generating base config files"
-echo "FONT=$font" > /mnt/etc/vconsole.conf
+cat << EOF > /mnt/etc/vconsole.conf
+KEYMAP=de-latin1
+FONT=$font
+EOF
 genfstab -L /mnt >> /mnt/etc/fstab
 echo "${hostname}" > /mnt/etc/hostname
 echo "en_US.UTF-8 UTF-8" >> /mnt/etc/locale.gen
