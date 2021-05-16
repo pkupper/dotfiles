@@ -67,6 +67,7 @@ echo "Setting up /etc configs..."
 echo "=========================="
 
 copy "etc/default/grub"
+copy "etc/pacman.conf"
 
 (( "$reverse" ))&& exit 0
 
