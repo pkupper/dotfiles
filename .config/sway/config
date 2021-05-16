@@ -174,6 +174,8 @@
 		bindsym $mod+s exec slurp | grim -g - - | tee $(xdg-user-dir PICTURES)/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') | wl-copy
 		
 		bindsym $mod+Shift+s exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | tee $(xdg-user-dir PICTURES)/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') | wl-copy
+		
+		bindsym $mod+Alt+s exec swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp | grim -g - - | tee $(xdg-user-dir PICTURES)/Screenshots/$(date +'screenshot_%Y-%m-%d-%H%M%S.png') | wl-copy
 
 # Startup applications
 	# Dbus
@@ -194,26 +196,9 @@ for_window [window_role="app"]             floating enable
 for_window [window_role="pop-up"]          floating enable
 for_window [window_role="task_dialog"]     floating enable
 for_window [window_type="dialog"]          floating enable
-for_window [title="Preferences$"]          floating enable
-for_window [class="Anki"]                  floating enable
-for_window [title="Anki$"]                 floating enable
-for_window [app_id="electrum"]             floating enable
-for_window [app_id="nm-connection-editor"] floating enable
-for_window [class="Blueman-manager"]       floating enable
-for_window [class="Galculator"]            floating enable
-for_window [class="Gui.py"]                floating enable
-for_window [class="Mnemosyne"]             floating enable
-for_window [class="Nm-connection-editor"]  floating enable
-for_window [class="Pavucontrol"]           floating enable
-for_window [class="Qpaeq"]                 floating enable
-for_window [class="SimpleScreenRecorder"]  floating enable
-for_window [class="Woeusbgui"]             floating enable
-for_window [class="electrum"]              floating enable
-for_window [class="etcher"]                floating enable
-for_window [class="feh"]                   floating enable
-for_window [title="^bobby$"]               floating enable
 for_window [title="Firefox - Sharing Indicator"] floating enable
 for_window [title="JACK Audio Connection Kit"] floating enable
+for_window [title="Discord Updater"] floating enable
 
 # Misc
 	include /etc/sway/config.d/*

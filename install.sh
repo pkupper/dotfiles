@@ -125,7 +125,7 @@ mkdir -p /mnt/efi
 mount "${part_boot}" /mnt/efi
 
 echo -e "\n### Installing base packages"
-pacstrap -i /mnt base base-devel linux linux-firmware grub efibootmgr os-prober zsh git
+pacstrap -i /mnt base base-devel linux linux-firmware grub efibootmgr os-prober zsh git dhcpcd
 
 echo -e "\n### Generating base config files"
 cat << EOF > /mnt/etc/vconsole.conf

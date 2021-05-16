@@ -71,6 +71,16 @@ copy "etc/default/grub"
 (( "$reverse" ))&& exit 0
 
 echo ""
+echo "===================="
+echo "Start DHCP client..."
+echo "===================="
+
+sysctl --system > /dev/null
+
+systemctl daemon-reload
+systemctl_enable_start "dhcpcd.service"
+
+echo ""
 echo "======================"
 echo "Installing packages..."
 echo "======================"
@@ -85,7 +95,6 @@ echo "================================="
 sysctl --system > /dev/null
 
 systemctl daemon-reload
-
 
 echo ""
 echo "======================================="
