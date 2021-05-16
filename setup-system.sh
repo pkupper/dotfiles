@@ -82,11 +82,27 @@ systemctl daemon-reload
 systemctl_enable_start "dhcpcd.service"
 
 echo ""
-echo "======================"
-echo "Installing packages..."
-echo "======================"
+echo "============================="
+echo "Installing native packages..."
+echo "============================="
 
 pacman -Syu - < $dotfiles_dir/pkglist/pacman
+
+echo ""
+echo "=========================="
+echo "Installing AUR packages..."
+echo "=========================="
+
+if [ -x /usr/bin/paru ]
+then
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si
+    cd ..
+    rm -rf paru
+fi
+
+paru -Syu - < $dotfiles_dir/pkglist/aur
 
 echo ""
 echo "================================="

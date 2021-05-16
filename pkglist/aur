@@ -18,6 +18,7 @@ nerd-fonts-complete
 obs-studio-git
 obs-v4l2sink
 pandoc-bin
+paru
 pipewire-jack-dropin
 renderdoc
 skypeforlinux-stable-bin
@@ -34,4 +35,3 @@ unityhub
 visual-studio-code-bin
 wdisplays
 websocketd
-yay
