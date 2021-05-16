@@ -64,7 +64,6 @@ feh
 file
 filesystem
 findutils
-flashplugin
 flatpak
 flatpak-builder
 flex
@@ -183,7 +182,6 @@ paprefs
 patch
 pavucontrol
 pciutils
-pepper-flash
 perl
 php
 php-apache
