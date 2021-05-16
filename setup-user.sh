@@ -46,6 +46,7 @@ link ".config/sway"
 link ".config/swaylock"
 link ".config/waybar"
 link ".config/wofi"
+link ".config/termite"
 
 echo ""
 echo "======================================="
