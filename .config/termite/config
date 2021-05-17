@@ -31,52 +31,57 @@ filter_unmatched_urls = true
 # emit escape sequences for extra modified keys
 #modify_other_keys = false
 
+# Start flavours
 [colors]
-foreground          = #e9e9f4
-foreground_bold     = #f1f2f8
-cursor              = #f1f2f8
-cursor_foreground   = #282936
-background          = #292b2e
+# Base16 Atlas
+# Author: Alex Lende (https://ajlende.com)
+
+foreground          = #a1a19a
+foreground_bold     = #a1a19a
+cursor              = #a1a19a
+cursor_foreground   = #002635
+background          = #002635
 
 # 16 color space
 
 # Black, Gray, Silver, White
-color0  = #282936
-color8  = #4d4f68
-color7  = #e9e9f4
-color15 = #f7f7fb
+color0  = #002635
+color8  = #6C8B91
+color7  = #a1a19a
+color15 = #fafaf8
 
 # Red
-color1  = #ea51b2
-color9  = #ea51b2
+color1  = #ff5a67
+color9  = #ff5a67
 
 # Green
-color2  = #00f769
-color10 = #00f769
+color2  = #7fc06e
+color10 = #7fc06e
 
 # Yellow
-color3  = #ebff87
-color11 = #ebff87
+color3  = #ffcc1b
+color11 = #ffcc1b
 
 # Blue
-color4  = #62d6e8
-color12 = #62d6e8
+color4  = #5dd7b9
+color12 = #5dd7b9
 
 # Purple
-color5  = #b45bcf
-color13 = #b45bcf
+color5  = #9a70a4
+color13 = #9a70a4
 
 # Teal
-color6  = #a1efe4
-color14 = #a1efe4
+color6  = #14747e
+color14 = #14747e
 
 # Extra colors
-color16 = #b45bcf
-color17 = #00f769
-color18 = #3a3c4e
-color19 = #626483
-color20 = #62d6e8
-color21 = #f1f2f8
+color16 = #f08e48
+color17 = #c43060
+color18 = #00384d
+color19 = #517F8D
+color20 = #869696
+color21 = #e6e6dc
+# End flavours
 
 [hints]
 #font = Monospace 12

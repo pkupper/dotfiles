@@ -1,0 +1,6 @@
+shell = "bash -c '{}'"
+
+[[item]]
+file = "~/.config/termite/config"
+template = "termite"
+
