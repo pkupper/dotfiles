@@ -68,6 +68,7 @@ echo "=========================="
 
 copy "etc/default/grub"
 copy "etc/pacman.conf"
+copy "etc/paru.conf"
 
 (( "$reverse" ))&& exit 0
 
@@ -86,14 +87,14 @@ echo "============================="
 echo "Installing native packages..."
 echo "============================="
 
-pacman -Syu - < $dotfiles_dir/pkglist/pacman
+pacman -Syu --needed - < $dotfiles_dir/pkglist/pacman
 
 echo ""
 echo "=========================="
 echo "Installing AUR packages..."
 echo "=========================="
 
-if [ -x /usr/bin/paru ]
+if [ ! -x /usr/bin/paru ]
 then
     git clone https://aur.archlinux.org/paru.git
     cd paru
@@ -102,7 +103,7 @@ then
     rm -rf paru
 fi
 
-paru -Syu - < $dotfiles_dir/pkglist/aur
+paru -Syu --needed - < $dotfiles_dir/pkglist/aur
 
 echo ""
 echo "================================="
