@@ -1,9 +1,12 @@
-export GOPATH=$HOME/go
 
-export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.cargo/bin
+if [[ $UID -ge 1000 && -d $HOME/.local/bin && -z $(echo $PATH | grep -o $HOME/.local/bin) ]]
+then
+    export PATH="${PATH}:$HOME/.local/bin"
+fi
 
-export LD_LIBRARY_PATH=/usr/local/lib/
+export VISUAL="/usr/bin/nvim"
+export EDITOR="$VISUAL"
+export SUDO_EDITOR="$VISUAL"
 
-export _JAVA_AWT_WM_NONREPARENTING=1
+export CHROOT=$HOME/chroot
 
-export VDPAU_DRIVER=radeonsi

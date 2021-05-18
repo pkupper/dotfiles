@@ -1,47 +1,37 @@
-# configure oh-my-zsh
-export ZSH="/home/paul/.oh-my-zsh"
-
-if [[ $UID -ge 1000 && -d $HOME/.local/bin && -z $(echo $PATH | grep -o $HOME/.local/bin) ]]
-then
-    export PATH="${PATH}:$HOME/.local/bin"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-alias sway="sway > ~/.log/sway/sway.log 2>&1"
+autoload -U compinit colors vcs_info
+colors
+compinit
+
+REPORTTIME=3
+HISTFILE=~/.zhistory
+HISTSIZE=5000
+SAVEHIST=5000
+
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt CORRECT_ALL
+zstyle ':completion:*' completer _complete _correct _approximate
+
+source ~/.zsh-autosuggestions.zsh
 
 case $(tty) in 
-	(/dev/tty[1-9]) 
-  		ZSH_THEME="alanpeabody"
-  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6,bg=0"
-  		DISABLE_AUTO_UPDATE="true"
-  		plugins=(git zsh-autosuggestions)
-		source $ZSH/oh-my-zsh.sh
-		echo -e '\033[?17;0;64c'
-  		;; 
-  	(*)
-  		ZSH_THEME="agnoster"
-  		DISABLE_AUTO_UPDATE="true"
-  		plugins=(git zsh-autosuggestions)
-		source $ZSH/oh-my-zsh.sh
-  		;; 
+    (/dev/tty[1-9]) 
+        ;; 
+    (*)
+        source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+        ;; 
 esac
 
-if [ "$(tty)" = "/dev/tty1" ]; then
-	# export QT_QPA_PLATFORM=wayland
-	export MOZ_ENABLE_WAYLAND=1
-	# export GDK_BACKEND=wayland
-	export XDG_CURRENT_DESKTOP=sway
-	export WLR_XWAYLAND=/home/paul/.local/bin/Xwayland
-	exec systemd-cat --identifier=sway sway
-fi
-
-# configure aliases
-# source $PWD/../.alias
-
-export VISUAL="/usr/bin/nvim"
-export EDITOR="$VISUAL"
-export SUDO_EDITOR="/usr/bin/gedit"
-
-export CHROOT=$HOME/chroot
-
-
+source ~/.zsh-aliases
