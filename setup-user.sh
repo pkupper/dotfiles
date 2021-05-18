@@ -46,8 +46,13 @@ link ".config/sway"
 link ".config/swaylock"
 link ".config/waybar"
 link ".config/wofi"
+link ".config/mako"
+link ".config/alacritty"
 link ".config/termite"
 link ".config/flavours"
+link ".local/share/flavours/base16"
+link ".vscode/extensions/theme-base16-flavours"
+link ".config/systemd"
 
 echo ""
 echo "======================================="
@@ -58,7 +63,10 @@ if is_chroot; then
     echo >&2 "=== Running in chroot, skipping GTK file chooser dialog configuration..."
 else
     echo "Configuring Nautlius"
-    gsettings set org.gnome.nautilus.preferences sort-directories-first true
+    gsettings set org.gnome.nautilus.preferences default-sort-order type
     echo "Configuring GTK file chooser dialog"
     gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 fi
+
+echo "Setting up flavours"
+flavours apply gruvbox-dark-hard

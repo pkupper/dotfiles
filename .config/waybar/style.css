@@ -1,4 +1,4 @@
-@import "./base16-waybar/colors/base16-default-dark.css";
+@import "./colors.css";
 
 * {
   transition: none;

@@ -3,4 +3,49 @@ shell = "bash -c '{}'"
 [[item]]
 file = "~/.config/termite/config"
 template = "termite"
+hook = "killall -USR1 termite"
+
+[[item]]
+file = "~/.vscode/extensions/theme-base16-flavours/themes/base16-flavours-color-theme.json"
+template = "vscode-custom"
+rewrite = true
+
+[[item]]
+file = "~/.config/wofi/style.css"
+template = "wofi"
+start= "/* Start flavours */"
+end = "/* End flavours */"
+
+[[item]]
+file = "~/.config/swaylock/config"
+template = "swaylock"
+
+[[item]]
+file = "~/.config/waybar/colors.css"
+template = "waybar"
+rewrite = true
+hook = "killall -SIGUSR2 waybar"
+
+[[item]]
+file = "~/.themes/FlatColor/colors2"
+template = "gtk-flatcolor"
+subtemplate = "gtk-2"
+rewrite = true
+
+[[item]]
+file = "~/.themes/FlatColor/colors3"
+template = "gtk-flatcolor"
+subtemplate = "gtk-3"
+rewrite = true
+hook = "gsettings set org.gnome.desktop.interface gtk-theme Adapta && gsettings set org.gnome.desktop.interface gtk-theme FlatColor"
+
+[[item]]
+file = "~/.config/alacritty/alacritty.yml"
+template = "alacritty"
+subtemplate = "default-256"
+
+[[item]]
+file= "~/.config/mako/config"
+template = "mako"
+hook = "killall mako"
 
