@@ -5,11 +5,30 @@ packages:
     - base-devel
     - linux
     - linux-firmware
+    - linux-headers
   system:
+    - alsa-utils
+    - bc
+    - cpupower
+    - cups
+    - devtools
+    - efivar
     - fish
-    - neovim
+    - git-lfs
+    - github-cli
+    - htop
+    - inetutils
+    - jdk21-openjdk
     - neofetch
+    - neovim
     - networkmanager
+    - powertop
+    - reflector
+    - sof-firmware
+    - ufw
+    - unrar
+    - unzip
+    - wine
   desktop:
     - audacity
     - bitwarden
@@ -19,6 +38,8 @@ packages:
     - filelight
     - firefox
     - gimp
+    - gnome-font-viewer
+    - inkscape
     - kitty
     - libreoffice-fresh
     - mpv
@@ -27,7 +48,3 @@ packages:
     - plasma-meta
     - signal-desktop
     - thunderbird
-
-  
-
-

@@ -12,6 +12,12 @@
     name: NetworkManager
     enabled: yes
 
+- name: Enable firewall
+  become: true
+  ansible.builtin.systemd:
+    name: ufw
+    enabled: yes
+
 - name: Enable display manager
   become: true
   ansible.builtin.systemd:
