@@ -1,0 +1,19 @@
+packages:
+  base:
+    - ansible
+    - base
+    - base-devel
+    - linux
+    - linux-firmware
+  system:
+    - neovim
+    - neofetch
+  desktop:
+    - plasma-desktop
+    - plasma-meta
+    - bitwarden
+    - firefox
+    - kitty
+  
+
+

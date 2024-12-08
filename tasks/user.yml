@@ -1,0 +1,13 @@
+- name: Create the wheel group
+  ansible.builtin.group:
+    name: wheel
+    state: present
+  become: yes
+
+- name: Create the user 'paul'
+  ansible.builtin.user:
+    name: paul
+    shell: "/bin/fish"
+    groups: wheel
+    append: yes
+  become: yes
