@@ -4,6 +4,16 @@
     state: present
   become: yes
 
+- name: Allow sudo for wheel
+  ansible.builtin.blockinfile:
+    path: /etc/sudoers.d/00-sudo
+    block: |
+       %wheel ALL=(ALL) ALL
+       %wheel ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown
+    create: yes
+    validate: 'visudo -cf %s'
+  become: yes
+
 - name: Create the user 'paul'
   ansible.builtin.user:
     name: paul
