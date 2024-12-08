@@ -6,15 +6,28 @@ packages:
     - linux
     - linux-firmware
   system:
+    - fish
     - neovim
     - neofetch
     - networkmanager
   desktop:
+    - audacity
+    - bitwarden
+    - blender
+    - chromium
+    - discord
+    - filelight
+    - firefox
+    - gimp
+    - kitty
+    - libreoffice-fresh
+    - mpv
+    - obs-studio
     - plasma-desktop
     - plasma-meta
-    - bitwarden
-    - firefox
-    - kitty
+    - signal-desktop
+    - thunderbird
+
   
 
 
