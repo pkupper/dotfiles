@@ -1,13 +1,20 @@
 - include_tasks: "packages.yml"
 
 - name: Enable time synchronization
+  become: true
   ansible.builtin.systemd:
     name: systemd-timesyncd
     enabled: yes
-  become: yes
+
+- name: Enable NetworkManager
+  become: true
+  ansible.builtin.systemd:
+    name: NetworkManager
+    enabled: yes
 
 - name: Enable display manager
+  become: true
   ansible.builtin.systemd:
     name: sddm
     enabled: yes
-  become: yes
+

@@ -8,6 +8,7 @@ packages:
   system:
     - neovim
     - neofetch
+    - networkmanager
   desktop:
     - plasma-desktop
     - plasma-meta
