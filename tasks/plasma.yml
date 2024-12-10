@@ -1,0 +1,13 @@
+- name: Set keyboard layout
+  community.general.kdeconfig:
+    path: ~/.config/kxkbrc
+    values:
+      - group: Layout
+        key: LayoutList
+        value: "de,de"
+      - group: Layout
+        key: VariantList
+        value: "nodeadkeys,"
+
+- name: Set Plasma theme
+  command: lookandfeeltool -a org.kde.breezedark.desktop
