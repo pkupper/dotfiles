@@ -1,5 +1,6 @@
 - name: Set keyboard layout
   community.general.kdeconfig:
+    kwriteconfig_path: kwriteconfig6
     path: ~/.config/kxkbrc
     values:
       - group: Layout
