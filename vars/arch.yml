@@ -13,13 +13,13 @@ packages:
     - cups
     - devtools
     - efivar
+    - fastfetch
     - fish
     - git-lfs
     - github-cli
     - htop
     - inetutils
     - jdk21-openjdk
-    - neofetch
     - neovim
     - networkmanager
     - powertop
