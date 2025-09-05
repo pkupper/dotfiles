@@ -44,6 +44,13 @@
     name: ufw
     enabled: yes
 
+- name: Set sddm configuration
+  become: true
+  ansible.builtin.copy:
+    src: 10_sddm_custom.conf
+    dest: /etc/sddm.conf.d
+    force: true
+
 - name: Enable display manager
   become: true
   ansible.builtin.systemd:
