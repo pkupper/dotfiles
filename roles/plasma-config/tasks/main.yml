@@ -25,6 +25,11 @@
 - name: Configure taskbar applications
   ansible.builtin.replace:
     path: ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-    after: '^\[Containments\]\[\d+\]\[Applets\]\[\d+\]\[Configuration\]\[General\]'
-    regexp: "^launchers=.*$"
-    replace: "launchers=applications:systemsettings.desktop,preferred://filemanager,preferred://browser,applications:org.mozilla.Thunderbird.desktop,applications:kitty.desktop"
+    regexp: '(?m)(^\[Containments\]\[\d+\]\[Applets\]\[\d+\]\[Configuration\]\[General\]\s*\r?\n)launchers=.*$'
+    replace: '\1launchers=applications:systemsettings.desktop,applications:bitwarden.desktop,preferred://filemanager,preferred://browser,applications:org.mozilla.Thunderbird.desktop,applications:kitty.desktop'
+
+- name: Restart plasma shell
+  ansible.builtin.systemd:
+    scope: user
+    name: plasma-plasmashell
+    state: restarted
