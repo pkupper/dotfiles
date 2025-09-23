@@ -12,3 +12,19 @@
 
 - name: Set Plasma theme
   command: lookandfeeltool -a org.kde.breezedark.desktop
+
+- name: Set terminal launch shortcut
+  community.general.kdeconfig:
+    kwriteconfig_path: kwriteconfig6
+    path: ~/.config/kglobalshortcutsrc
+    values:
+      - groups: [kglobalshortcutsrc, kitty.desktop]
+        key: _launch
+        value: "Meta+Return"
+
+- name: Configure taskbar applications
+  ansible.builtin.replace:
+    path: ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+    after: '^\[Containments\]\[\d+\]\[Applets\]\[\d+\]\[Configuration\]\[General\]'
+    regexp: "^launchers=.*$"
+    replace: "launchers=applications:systemsettings.desktop,preferred://filemanager,preferred://browser,applications:org.mozilla.Thunderbird.desktop,applications:kitty.desktop"
