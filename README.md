@@ -5,19 +5,20 @@ My personal Linux configuration files.
 ## Installation
 
 1. Install base Arch Linux system
-2. Install bootloader
-3. Install ansible `pacman -S ansible`
-4. Clone dotfiles repository
-5. Run `ansible-playbook install.yml`
-6. Set user password
-7. Reboot
+1. Install ansible `pacman -S ansible`
+1. Clone dotfiles repository to `/root/dotfiles`
+1. Run `ansible-playbook install.yml`
+1. Set user password
+1. Reboot
 
 ## Initial User Configuration
-1. Log in as user 'paul'
-2. Run `ansible-playbook user.yml`
 
+1. Log in as user 'paul'
+1. Clone dotfiles repository under `~/.dotfiles`
+1. Run `ansible-playbook user.yml`
 
 ## Update System and User Configuration
+
 1. Log in as user 'paul'
-2. Run `ansible-playbook install.yml --ask-become-pass`
-3. Run `ansible-playbook user.yml`
+1. Run `ansible-playbook install.yml --ask-become-pass`
+1. Run `ansible-playbook user.yml`
