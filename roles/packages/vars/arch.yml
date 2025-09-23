@@ -44,7 +44,8 @@ packages:
     - libreoffice-fresh
     - mpv
     - obs-studio
-    - plasma-desktop
     - plasma-meta
+    - sddm
+    - sddm-kcm
     - signal-desktop
     - thunderbird
