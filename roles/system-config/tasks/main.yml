@@ -50,8 +50,8 @@
   become: yes
   ansible.builtin.copy:
     src: 10_sddm_custom.conf
-    dest: /etc/sddm.conf.d
-    force: yes
+    dest: /etc/sddm.conf.d/
+    force: true
 
 - name: Enable display manager
   become: yes
