@@ -1,4 +1,5 @@
 - name: Ensure locales present
+  become: yes
   community.general.locale_gen:
     name:
       - en_US.UTF-8
@@ -6,9 +7,11 @@
     state: present
 
 - name: Set locale
+  become: yes
   command: localectl set-locale LANG=en_US.UTF-8
 
 - name: "Enable multilib (Part 1)"
+  become: yes
   lineinfile:
     dest: "/etc/pacman.conf"
     state: "present"
@@ -17,6 +20,7 @@
     insertafter: "^#\\[multilib\\]"
 
 - name: "Enable multilib (Part 2)"
+  become: yes
   lineinfile:
     dest: "/etc/pacman.conf"
     state: "present"
@@ -25,32 +29,32 @@
     regexp: "Include = /etc/pacman.d/mirrorlist"
 
 - name: Enable time synchronization
-  become: true
+  become: yes
   ansible.builtin.systemd:
     name: systemd-timesyncd
     enabled: yes
 
 - name: Enable NetworkManager
-  become: true
+  become: yes
   ansible.builtin.systemd:
     name: NetworkManager
     enabled: yes
 
 - name: Enable firewall
-  become: true
+  become: yes
   ansible.builtin.systemd:
     name: ufw
     enabled: yes
 
 - name: Set sddm configuration
-  become: true
+  become: yes
   ansible.builtin.copy:
     src: 10_sddm_custom.conf
     dest: /etc/sddm.conf.d
-    force: true
+    force: yes
 
 - name: Enable display manager
-  become: true
+  become: yes
   ansible.builtin.systemd:
     name: sddm
     enabled: yes

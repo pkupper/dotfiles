@@ -1,26 +1,26 @@
 - include_vars: arch.yml
 
 - name: Update package database
-  become: true
+  become: yes
   ansible.builtin.package:
     update_cache: yes
 
 - name: Install base packages
-  become: true
+  become: yes
   ansible.builtin.package:
     name: "{{ packages.base }}"
     state: latest
     update_cache: no
 
 - name: Install system packages
-  become: true
+  become: yes
   ansible.builtin.package:
     name: "{{ packages.system }}"
     state: latest
     update_cache: no
 
 - name: Install desktop packages
-  become: true
+  become: yes
   ansible.builtin.package:
     name: "{{ packages.desktop }}"
     state: latest
