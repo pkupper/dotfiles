@@ -1,6 +1,6 @@
 - hosts: 127.0.0.1
   connection: local
   roles:
-    - packages
+    - package-installation
     - system-config
-    - user-config
+    - user-creation

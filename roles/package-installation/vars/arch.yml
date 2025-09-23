@@ -22,6 +22,7 @@ packages:
     - jdk21-openjdk
     - neovim
     - networkmanager
+    - pipewire
     - powertop
     - reflector
     - sof-firmware
@@ -29,6 +30,7 @@ packages:
     - unrar
     - unzip
     - wine
+    - wireplumber
   desktop:
     - audacity
     - bitwarden
