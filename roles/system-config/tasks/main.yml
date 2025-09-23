@@ -46,6 +46,19 @@
     name: ufw
     enabled: yes
 
+- name: Configure reflector
+  become: yes
+  ansible.builtin.copy:
+    src: reflector.conf
+    dest: /etc/xdg/reflector/
+    force: true
+
+- name: Enable reflector
+  become: yes
+  ansible.builtin.systemd:
+    name: reflector
+    enabled: yes
+
 - name: Set sddm configuration
   become: yes
   ansible.builtin.copy:
