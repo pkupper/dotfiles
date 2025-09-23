@@ -1,9 +1,10 @@
-- name: Upgrade system packages
+- include_vars: arch.yml
+
+- name: Update package database
   become: true
   ansible.builtin.package:
     update_cache: yes
-    upgrade: yes
- 
+
 - name: Install base packages
   become: true
   ansible.builtin.package:

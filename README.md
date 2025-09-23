@@ -11,3 +11,13 @@ My personal Linux configuration files.
 5. Run `ansible-playbook install.yml`
 6. Set user password
 7. Reboot
+
+## Initial User Configuration
+1. Log in as user 'paul'
+2. Run `ansible-playbook user.yml`
+
+
+## Update System and User Configuration
+1. Log in as user 'paul'
+2. Run `ansible-playbook install.yml --ask-become-pass`
+3. Run `ansible-playbook user.yml`

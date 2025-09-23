@@ -24,8 +24,6 @@
     insertafter: "^\\[multilib\\]"
     regexp: "Include = /etc/pacman.d/mirrorlist"
 
-- include_tasks: "packages.yml"
-
 - name: Enable time synchronization
   become: true
   ansible.builtin.systemd:
@@ -56,4 +54,3 @@
   ansible.builtin.systemd:
     name: sddm
     enabled: yes
-

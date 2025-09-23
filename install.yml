@@ -1,7 +1,6 @@
 - hosts: 127.0.0.1
   connection: local
-  tasks:
-    - include_vars: "vars/arch.yml"
-    - include_tasks: "tasks/system.yml"
-    - include_tasks: "tasks/user.yml"
-    
+  roles:
+    - packages
+    - system-config
+    - user-config
