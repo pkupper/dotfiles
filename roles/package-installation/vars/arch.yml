@@ -26,6 +26,7 @@ packages:
     - powertop
     - reflector
     - sof-firmware
+    - syncthing
     - ufw
     - unrar
     - unzip
@@ -37,6 +38,7 @@ packages:
     - blender
     - chromium
     - discord
+    - dolphin
     - filelight
     - firefox
     - gimp

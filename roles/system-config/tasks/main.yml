@@ -28,6 +28,11 @@
     insertafter: "^\\[multilib\\]"
     regexp: "Include = /etc/pacman.d/mirrorlist"
 
+- name: Update package database
+  become: yes
+  ansible.builtin.package:
+    update_cache: yes
+
 - name: Enable time synchronization
   become: yes
   ansible.builtin.systemd:
