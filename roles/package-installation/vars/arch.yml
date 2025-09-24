@@ -44,6 +44,7 @@ packages:
     - firefox
     - gimp
     - gnome-font-viewer
+    - gwenview
     - inkscape
     - kitty
     - libreoffice-fresh
