@@ -46,6 +46,7 @@ packages:
     - gnome-font-viewer
     - gwenview
     - inkscape
+    - kate
     - kitty
     - libreoffice-fresh
     - mpv
