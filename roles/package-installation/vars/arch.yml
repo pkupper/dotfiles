@@ -33,6 +33,7 @@ packages:
     - wine
     - wireplumber
   desktop:
+    - ark
     - audacity
     - bitwarden
     - blender
