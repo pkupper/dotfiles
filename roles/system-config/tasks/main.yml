@@ -1,3 +1,10 @@
+- name: Set environment
+  become: yes
+  ansible.builtin.copy:
+    src: pam_env.conf
+    dest: /etc/security/
+    force: true
+
 - name: Ensure locales present
   become: yes
   community.general.locale_gen:
